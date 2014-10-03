@@ -1,11 +1,17 @@
+<?php
+
+  $bg = rand(0,20);
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>2048</title>
 
-  <link href="style/main.css" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="favicon.ico">
+  <link href="r/css/main.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="r/i/favicon.ico">
   <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
   <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
   <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
@@ -16,7 +22,7 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
-<body>
+<body style="background:#666 url(r/css/i/bghtml<?php echo $bg;?>.jpg) repeat 0 0;">
   <div class="container">
     <div class="heading">
       <h1 class="title">2048</h1>
@@ -85,15 +91,15 @@
     </p>
   </div>
 
-  <script src="js/bind_polyfill.js"></script>
-  <script src="js/classlist_polyfill.js"></script>
-  <script src="js/animframe_polyfill.js"></script>
-  <script src="js/keyboard_input_manager.js"></script>
-  <script src="js/html_actuator.js"></script>
-  <script src="js/grid.js"></script>
-  <script src="js/tile.js"></script>
-  <script src="js/local_storage_manager.js"></script>
-  <script src="js/game_manager.js"></script>
-  <script src="js/application.js"></script>
+  <script src="r/js/bind_polyfill.js"></script>
+  <script src="r/js/classlist_polyfill.js"></script>
+  <script src="r/js/animframe_polyfill.js"></script>
+  <script src="r/js/keyboard_input_manager.js"></script>
+  <script src="r/js/html_actuator.js"></script>
+  <script src="r/js/grid.js"></script>
+  <script src="r/js/tile.js"></script>
+  <script src="r/js/local_storage_manager.js"></script>
+  <script src="r/js/game_manager.js"></script>
+  <script src="r/js/application.js"></script>
 </body>
 </html>
