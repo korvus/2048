@@ -13,10 +13,10 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
   window.requestAnimationFrame(function () {
     self.clearContainer(self.tileContainer);
 
-    grid.cells.forEach(function (column) {
+    grid.cells.forEach(function (column, iteration1) {
       column.forEach(function (cell) {
         if (cell) {
-          self.addTile(cell);
+          self.addTile(cell, iteration1);
         }
       });
     });
@@ -46,9 +46,8 @@ HTMLActuator.prototype.clearContainer = function (container) {
   }
 };
 
-HTMLActuator.prototype.addTile = function (tile) {
+HTMLActuator.prototype.addTile = function (tile, iter1) {
   var self = this;
-
   var wrapper   = document.createElement("div");
   var inner     = document.createElement("div");
   var position  = tile.previousPosition || { x: tile.x, y: tile.y };
@@ -61,6 +60,12 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   this.applyClasses(wrapper, classes);
 
+  if(iter1=="hide"){
+    classes.push("tile-old");
+    this.applyClasses(wrapper, classes);
+    wrapper.style.backgroundImage="url('r/css/i/explosions.gif?"+Math.random()+"')";
+  }
+
   inner.classList.add("tile-inner");
   inner.textContent = tile.value;
 
@@ -70,13 +75,13 @@ HTMLActuator.prototype.addTile = function (tile) {
       classes[2] = self.positionClass({ x: tile.x, y: tile.y });
       self.applyClasses(wrapper, classes); // Update the position
     });
-  } else if (tile.mergedFrom) {
+  }else if(tile.mergedFrom){
     classes.push("tile-merged");
     this.applyClasses(wrapper, classes);
 
-    // Render the tiles that merged
+    /* Render the tiles that merged - lignes a supprimer si besoin de ne pas avoir de superpositions du tout */
     tile.mergedFrom.forEach(function (merged) {
-      self.addTile(merged);
+      self.addTile(merged, "hide");
     });
   } else {
     classes.push("tile-new");

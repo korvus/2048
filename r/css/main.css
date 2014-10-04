@@ -176,7 +176,7 @@ animation-fill-mode: both;
 .grid-row{margin-bottom: 15px;}
 .grid-row:last-child{margin-bottom: 0;}
 .grid-row:after{content:"";display:block;clear:both;}
-.grid-cell{width:100px;height:100px;margin-right:12px;float:left;background:rgba(238, 228, 218, 0.35);}
+.grid-cell{width:100px;height:100px;margin-right:12px;float:left;background:rgba(238, 228, 218, 0.18);}
 .grid-cell:last-child{margin-right: 0;}
 .tile-container{position:absolute;z-index:2;}
 
@@ -216,10 +216,12 @@ animation-fill-mode: both;
 .tile.tile-64 .tile-inner{background:transparent url(i/lostsoul.gif) no-repeat 50% 50%;}
 .tile.tile-128 .tile-inner{background:transparent url(i/cacodaemon.gif) no-repeat 50% 50%;}
 .tile.tile-256 .tile-inner{background:transparent url(i/baronofhell.gif) no-repeat 50% 50%;}
-.tile.tile-512 .tile-inner{background:transparent url(i/lostsoul.gif) no-repeat 50% 50%;}
+.tile.tile-512 .tile-inner{background:transparent url(i/baron.gif) no-repeat 50% 50%;}
 .tile.tile-1024 .tile-inner{background:#edc53f;font-size:35px;}
 .tile.tile-2048 .tile-inner{background:#edc22e;font-size:35px;}
 .tile.tile-super .tile-inner{color:#f9f6f2;background:#3c3a32;font-size:30px;}
+.tile.tile-old{background-position:50% 50%;background-repeat:no-repeat;}
+.tile.tile-old .tile-inner{background:none;}
 
 @media screen and (max-width: 520px){
   .tile.tile-128 .tile-inner{font-size:25px;}

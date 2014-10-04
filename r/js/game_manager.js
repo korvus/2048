@@ -162,6 +162,9 @@ GameManager.prototype.move = function (direction) {
 
           // Converge the two tiles' positions
           tile.updatePosition(positions.next);
+          //tile.updatePosition(positions.farthest);
+          //console.log(positions);
+
 
           // Update the score
           self.score += merged.value;
