@@ -22,9 +22,10 @@
 
 html,
 body{background:#000;padding:0;margin:0;color:#776e65;font-family:"doomregular",Arial, regular, sans-serif;font-size:18px;}
-body{padding:80px 0;}
+body{padding:40px 0 80px;}
 .heading:after{content:"";display:block;clear:both;}
-h1.title{font-size:80px;font-weight:bold;margin:0;display:block;float:left;}
+h1{text-align:center;}
+h1.title{font-size:80px;font-weight:bold;margin:0;display:block;}
 
 @-webkit-keyframes move-up {
   0% {  top: 25px;opacity:1;}
@@ -40,30 +41,13 @@ h1.title{font-size:80px;font-weight:bold;margin:0;display:block;float:left;}
 }
 .scores-container{float:right;text-align:right;}
 .score-container, 
-.best-container {
-  position: relative;
-  display: inline-block;
-  background: #bbada0;
-  padding: 15px 25px;
-  font-size: 25px;
-  height: 25px;
-  line-height: 47px;
-  font-weight: bold;
-  border-radius: 3px;
-  color: white;
-  margin-top: 8px;
-  text-align: center;}
+.best-container{position:relative;display:inline-block;
+  padding:5px 0;font-size:25px;height:25px;line-height:47px;font-weight:bold;
+  border-radius:3px;color:white;margin-top:8px;text-align:center;}
 .score-container:after,
-.best-container:after {
-    position: absolute;
-    width: 100%;
-    top: 10px;
-    left: 0;
-    text-transform: uppercase;
-    font-size: 13px;
-    line-height: 13px;
-    text-align: center;
-    color: #eee4da;
+.best-container:after{
+    position:absolute;width:100%;top:80px;left:0;line-height:13px;text-align:center;
+    color: #fff;font-size: 25px;opacity: 0.5;text-align:center;text-shadow:3px 2px 1px #2b2b2b;
 }
 .score-container .score-addition,
 .best-container .score-addition{
@@ -90,6 +74,46 @@ p{margin-top:0;margin-bottom:10px;line-height:1.65;}
 a{color: #776e65;font-weight:bold;text-decoration: underline;cursor:pointer;}
 strong.important{text-transform: uppercase;}
 .container{width:500px;margin:0 auto;}
+
+#board{position:fixed;display:block;width:960px;margin-left:-480px;height:114px;background:transparent url(i/bgBoard.jpg) repeat-x 0 47px;clear:left;width:100%;bottom:0;padding-left:50%;z-index:6;-webkit-transform:translateZ(510px);}
+#wrapBoardCentral{position:relative;background:url(i/console.jpg) no-repeat 0 0;width:960px;height:114px;display:block;box-shadow:0 0 25px #000;}
+#wrapBoardCentral .inset{float:left;height:110px;}
+
+.inset .bignumber{font-size:50px;line-height:52px;font-weight:normal;text-align:center;display:block;color:#cc0104;
+  text-shadow:
+  0 4px 1px #520300,
+  0 -4px 1px #520300,
+  4px 0 1px #520300,
+  -4px 0 1px #520300,
+  7px 5px 10px #000;
+}
+.inset .medium{font-size:25px;line-height:40px;}
+.inset .subtitle{text-align:center;display:block;font-size:25px;color:#fff;opacity:0.5;text-shadow:3px 2px 1px #2b2b2b;}
+.inset0{width:223px;}
+.inset1{width:205px;}
+.inset2{width:111px;}
+.inset3{width:107px;position:relative;}
+.inset4{width:173px;}
+.inset5{width:40px;}
+.inset6{width:210px;}
+
+
+#head{display:block;margin:22px 0 0 27px;width:50px;height:64px;background:url(i/doomfaces.png) no-repeat -210px 0;text-indent:-9999px;cursor:pointer;}
+#head.normal{background-position:-210px 0;animation:lookOnLeft 6s steps(1) infinite;}
+#head.wow{background-position:-107px -1px;}
+#head.hard{background-position:-54px 0;}
+#head.dead{background-position:-3px -331px;}
+#head.win{background-position:-54px -329px;}
+#head:hover{background-position:-1px 0;}
+
+/* Animation HEAD */
+@keyframes lookOnLeft{
+   0%{background-position:-210px 0;}
+   50%{background-position:-262px 0;}
+   70%{background-position:-158px 0;}
+   85%{background-position:-210px 0;}
+}
+
 
 @-webkit-keyframes fade-in {
   0%  {opacity:0;}
@@ -130,21 +154,16 @@ padding:15px;cursor:default;width:500px;height:500px;
 }
 
 .game-container .game-message{
-display:none;
-position:absolute;
-top:0;
-right:0;
-bottom:0;
-left:0;
-background: rgba(238, 228, 218, 0.5);
-z-index: 100;
-text-align: center;
--webkit-animation: fade-in 800ms ease 1200ms;
--moz-animation: fade-in 800ms ease 1200ms;
-animation: fade-in 800ms ease 1200ms;
--webkit-animation-fill-mode: both;
--moz-animation-fill-mode: both;
-animation-fill-mode: both;
+  display:none;position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  background: rgba(238, 228, 218, 0.5);
+  z-index: 100;text-align:center;
+  -webkit-animation: fade-in 800ms ease 1200ms;
+  -moz-animation: fade-in 800ms ease 1200ms;
+  animation: fade-in 800ms ease 1200ms;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
     .game-container .game-message p {
