@@ -79,7 +79,7 @@ strong.important{text-transform: uppercase;}
 #wrapBoardCentral{position:relative;background:url(i/console.jpg) no-repeat 0 0;width:960px;height:114px;display:block;box-shadow:0 0 25px #000;}
 #wrapBoardCentral .inset{float:left;height:110px;}
 
-.inset .bignumber{font-size:50px;line-height:52px;font-weight:normal;text-align:center;display:block;color:#cc0104;
+.bignumber{font-size:50px;line-height:52px;font-weight:normal;text-align:center;display:block;color:#cc0104;
   text-shadow:
   0 4px 1px #520300,
   0 -4px 1px #520300,
@@ -91,7 +91,7 @@ strong.important{text-transform: uppercase;}
 .inset .subtitle{text-align:center;display:block;font-size:25px;color:#fff;opacity:0.5;text-shadow:3px 2px 1px #2b2b2b;}
 .inset0{width:223px;}
 .inset1{width:205px;}
-.inset2{width:111px;}
+.inset2{width:175px;}
 .inset3{width:107px;position:relative;}
 .inset4{width:173px;}
 .inset5{width:40px;}
@@ -157,7 +157,7 @@ padding:15px;cursor:default;width:500px;height:500px;
   display:none;position:absolute;
   top:0;right:0;bottom:0;left:0;
   background: rgba(238, 228, 218, 0.5);
-  z-index: 100;text-align:center;
+  z-index:6;text-align:center;
   -webkit-animation: fade-in 800ms ease 1200ms;
   -moz-animation: fade-in 800ms ease 1200ms;
   animation: fade-in 800ms ease 1200ms;
@@ -166,25 +166,12 @@ padding:15px;cursor:default;width:500px;height:500px;
   animation-fill-mode: both;
 }
 
-    .game-container .game-message p {
-      font-size: 60px;
-      font-weight: bold;
-      height: 60px;
-      line-height: 60px;
-      margin-top: 222px; }
-    .game-container .game-message .lower {
-      display: block;
-      margin-top: 59px; }
-    .game-container .game-message a {
-      display: inline-block;
-      background: #8f7a66;
-      border-radius: 3px;
-      padding: 0 20px;
-      text-decoration: none;
-      color: #f9f6f2;
-      height: 40px;
-      line-height: 42px;
-      margin-left: 9px; }
+.game-container .game-message p{
+font-size:60px;font-weight:bold;height:60px;line-height:60px;margin-top:130px;}
+.game-container .game-message .lower{display:block;margin-top:59px;}
+.game-container .game-message a{
+display:inline-block;padding:0 20px;text-decoration:none;
+color:#fff;height:40px;line-height:42px;font-size:20px;margin-left:9px;}
 .game-container .game-message a.keep-playing-button{display:none;}
 .game-container .game-message.game-won{background: rgba(237, 194, 46, 0.5);color:#f9f6f2;}
 .game-container .game-message.game-won a.keep-playing-button{display:inline-block;}
@@ -195,7 +182,7 @@ padding:15px;cursor:default;width:500px;height:500px;
 .grid-row{margin-bottom: 15px;}
 .grid-row:last-child{margin-bottom: 0;}
 .grid-row:after{content:"";display:block;clear:both;}
-.grid-cell{width:100px;height:100px;margin-right:12px;float:left;background:rgba(238, 228, 218, 0.18);}
+.grid-cell{width:100px;height:100px;margin-right:12px;float:left;outline:1px dashed rgba(255,255,255,0.5);/*background:rgba(238, 228, 218, 0.18);*/}
 .grid-cell:last-child{margin-right: 0;}
 .tile-container{position:absolute;z-index:2;}
 
@@ -315,10 +302,15 @@ padding:15px;cursor:default;width:500px;height:500px;
   text-align: center;
   float: right; }
 
-.game-explanation {
-  margin-top: 50px; }
+.music{background:url(i/music.jpg) no-repeat 10px 4px;display:block;height:80px;}
+.music.on{background-position:41px 4px;}
+.music.on:hover{background-position:51px -74px;}
+.music.off{background-position:51px -74px;}
+.music.off:hover{background-position:41px 4px;}
 
-@media screen and (max-width: 520px) {
+.game-explanation{margin-top:50px;}
+
+@media screen and(max-width: 520px){
   html, body{font-size: 15px;}
   body{margin:20px 0;padding: 0 20px;}
   h1.title{font-size:27px;margin-top: 15px;}
@@ -329,34 +321,23 @@ padding:15px;cursor:default;width:500px;height:500px;
   .game-intro{width:55%;display:block;box-sizing:border-box;line-height:1.65;}
   .restart-button{width:42%;padding:0;display:block;box-sizing:border-box;margin-top:2px;}
   .game-container{margin-top:17px;position:relative;padding:10px;cursor:default;-webkit-touch-callout:none;-ms-touch-callout: none;-webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -ms-touch-action: none;
-    touch-action: none;
-    background: #bbada0;
-    border-radius: 6px;
-    width: 280px;
-    height: 280px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; }
-    .game-container .game-message {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(238, 228, 218, 0.5);
-      z-index: 100;
-      text-align: center;
-      -webkit-animation: fade-in 800ms ease 1200ms;
-      -moz-animation: fade-in 800ms ease 1200ms;
-      animation: fade-in 800ms ease 1200ms;
-      -webkit-animation-fill-mode: both;
-      -moz-animation-fill-mode: both;
-      animation-fill-mode: both; }
-      .game-container .game-message p {
+    -moz-user-select:none;-ms-user-select:none;-ms-touch-action:none;
+    touch-action: none;background: #bbada0;border-radius:6px;width:280px;
+    height:280px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+.game-container .game-message{
+  display:none;position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  background:rgba(238, 228, 218, 0.5);
+  z-index:6;text-align:center;
+  -webkit-animation:fade-in 800ms ease 1200ms;
+  -moz-animation:fade-in 800ms ease 1200ms;
+  animation:fade-in 800ms ease 1200ms;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode:both;}
+.game-container .game-message p{
         font-size: 60px;
         font-weight: bold;
         height: 60px;
@@ -365,18 +346,10 @@ padding:15px;cursor:default;width:500px;height:500px;
       .game-container .game-message .lower {
         display: block;
         margin-top: 59px; }
-      .game-container .game-message a {
-        display: inline-block;
-        background: #8f7a66;
-        border-radius: 3px;
-        padding: 0 20px;
-        text-decoration: none;
-        color: #f9f6f2;
-        height: 40px;
-        line-height: 42px;
-        margin-left: 9px; }
-        .game-container .game-message a.keep-playing-button {
-          display: none; }
+.game-container .game-message a{
+display: inline-block;background: #8f7a66;border-radius: 3px;padding: 0 20px;text-decoration:none;
+color: #f9f6f2;height: 40px;line-height: 42px;margin-left: 9px;}
+.game-container .game-message a.keep-playing-button{display:none;}
       .game-container .game-message.game-won {
         background: rgba(237, 194, 46, 0.5);
         color: #f9f6f2; }

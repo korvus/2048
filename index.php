@@ -32,7 +32,7 @@
 
 
     <div class="game-container">
-      <div class="game-message">
+      <div class="game-message bignumber">
         <p></p>
         <div class="lower">
 	        <a class="keep-playing-button">Keep going</a>
@@ -89,6 +89,10 @@
       </div>
       <div class="inset inset3">
         <a id="head" class="normal" title="you!">head</a>
+      </div>
+      <div class="inset inset2">
+        <a class="music off" title="stop/run the music" href="#musicoff"></a>
+        <span class="subtitle">Music</span>
       </div>
       <div class="above-game">
         <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
