@@ -63,12 +63,12 @@ GameManager.prototype.setup = function () {
       if(this.over === false){
         this.actuator.setDoomGuyPassenger("normal");
       }else{
-        this.actuator.setDoomGuyPassenger("dead");
+        this.actuator.setDoomGuy("dead");
       }
     }else{
       this.actuator.setDoomGuy("win");
     }
-    
+
   }else{
     this.grid        = new Grid(this.size);
     this.score       = 0;
@@ -78,10 +78,11 @@ GameManager.prototype.setup = function () {
 
     // Add the initial tiles
     this.addStartTiles();
+    this.actuator.setDoomGuyPassenger("normal");
   }
 
   /* Set sound */
-  if (soundState){
+  if(soundState){
     this.soundActivate = soundState;
   }else{
     this.storageManager.setSoundState(1);

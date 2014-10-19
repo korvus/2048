@@ -32,6 +32,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
         self.setDoomGuy("dead");
       } else if (metadata.won) {
         self.message(true); // You win!
+        self.setDoomGuy("win");
       }
     }
 
@@ -167,25 +168,29 @@ HTMLActuator.prototype.switchSoundToOff = function () {
 };
 
 HTMLActuator.prototype.setDoomGuy = function (cn){
-  window.clearTimeout(this.timer);
-  var allClass = this.doomGuy.classList;
-  for(var i=0;i<allClass.length;i++){
-    this.doomGuy.classList.remove(allClass[i]);
+  window.clearTimeout(this.timerwow);
+  if(cn == "letprevious"){
+    this.doomGuy.classList.remove("wow");
+  }else{
+    var allClass = this.doomGuy.classList;
+    for(var i=0;i<allClass.length;i++){
+      this.doomGuy.classList.remove(allClass[i]);
+    }
+    this.doomGuy.classList.add(cn);
   }
-  this.doomGuy.classList.add(cn);
 }
 
 HTMLActuator.prototype.setDoomGuyPassenger = function (cn) {
   var allClass = this.doomGuy.classList;
   var that = this;
   var callInitDoomGuy = function(){
-    that.setDoomGuy("normal");
+    that.setDoomGuy("letprevious");
   }
 
   for(var i=0;i<allClass.length;i++){
     this.doomGuy.classList.remove(allClass[i]);
   }
   this.doomGuy.classList.add(cn);
-  this.timer = setTimeout(callInitDoomGuy,300);
+  this.timerwow = setTimeout(callInitDoomGuy,300);
 
 };
