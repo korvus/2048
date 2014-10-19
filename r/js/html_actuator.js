@@ -3,6 +3,8 @@ function HTMLActuator() {
   this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
+  this.boutonSound      = document.querySelector(".inset .music");
+  this.doomGuy      = document.querySelector("#head");
 
   this.score = 0;
 }
@@ -27,6 +29,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     if (metadata.terminated) {
       if (metadata.over) {
         self.message(false); // You lose
+        self.setDoomGuy("dead");
       } else if (metadata.won) {
         self.message(true); // You win!
       }
@@ -141,4 +144,48 @@ HTMLActuator.prototype.clearMessage = function () {
   // IE only takes one value to remove at a time.
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
+};
+
+HTMLActuator.prototype.manageBtSounds = function () {
+  // IE only takes one value to remove at a time.
+  if(this.boutonSound.classList[1]=="off"){
+    this.switchSoundToOn();
+  }else{
+    this.switchSoundToOff();
+  }
+};
+
+HTMLActuator.prototype.switchSoundToOn = function () {
+  this.boutonSound.classList.remove("off");
+  this.boutonSound.classList.add("on");
+}
+
+HTMLActuator.prototype.switchSoundToOff = function () {
+  // IE only takes one value to remove at a time.
+  this.boutonSound.classList.remove("on");
+  this.boutonSound.classList.add("off");
+};
+
+HTMLActuator.prototype.setDoomGuy = function (cn){
+  window.clearTimeout(this.timer);
+  var allClass = this.doomGuy.classList;
+  for(var i=0;i<allClass.length;i++){
+    this.doomGuy.classList.remove(allClass[i]);
+  }
+  this.doomGuy.classList.add(cn);
+}
+
+HTMLActuator.prototype.setDoomGuyPassenger = function (cn) {
+  var allClass = this.doomGuy.classList;
+  var that = this;
+  var callInitDoomGuy = function(){
+    that.setDoomGuy("normal");
+  }
+
+  for(var i=0;i<allClass.length;i++){
+    this.doomGuy.classList.remove(allClass[i]);
+  }
+  this.doomGuy.classList.add(cn);
+  this.timer = setTimeout(callInitDoomGuy,300);
+
 };

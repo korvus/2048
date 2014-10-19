@@ -21,6 +21,7 @@ window.fakeStorage = {
 function LocalStorageManager() {
   this.bestScoreKey     = "bestScore";
   this.gameStateKey     = "gameState";
+  this.soundGame        = "sounds";
 
   var supported = this.localStorageSupported();
   this.storage = supported ? window.localStorage : window.fakeStorage;
@@ -61,3 +62,13 @@ LocalStorageManager.prototype.setGameState = function (gameState) {
 LocalStorageManager.prototype.clearGameState = function () {
   this.storage.removeItem(this.gameStateKey);
 };
+
+// Game sound state
+LocalStorageManager.prototype.getSoundState = function () {
+  return this.storage.getItem(this.soundGame);
+};
+
+LocalStorageManager.prototype.setSoundState = function (soundGameBoolean) {
+  this.storage.setItem(this.soundGame, soundGameBoolean);
+};
+

@@ -70,7 +70,8 @@ KeyboardInputManager.prototype.listen = function () {
 
   // Respond to button presses
   this.bindButtonPress(".retry-button", this.restart);
-  this.bindButtonPress(".restart-button", this.restart);
+  this.bindButtonPress(".music.off", this.initsound);
+  this.bindButtonPress("#head", this.restart);
   this.bindButtonPress(".keep-playing-button", this.keepPlaying);
 
   // Respond to swipe events
@@ -83,7 +84,7 @@ KeyboardInputManager.prototype.listen = function () {
       return; // Ignore if touching with more than 1 finger
     }
 
-    if (window.navigator.msPointerEnabled) {
+    if(window.navigator.msPointerEnabled) {
       touchStartClientX = event.pageX;
       touchStartClientY = event.pageY;
     } else {
@@ -131,6 +132,11 @@ KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
   this.emit("restart");
 };
+
+KeyboardInputManager.prototype.initsound = function(event){
+  event.preventDefault();
+  this.emit("initSound");
+}
 
 KeyboardInputManager.prototype.keepPlaying = function (event) {
   event.preventDefault();

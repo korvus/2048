@@ -3,11 +3,13 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.inputManager   = new InputManager;
   this.storageManager = new StorageManager;
   this.actuator       = new Actuator;
+  this.soundsAmbient  = new SoundsAmbient;
 
   this.startTiles     = 2;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
+  this.inputManager.on("initSound", this.initSound.bind(this));
   this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
 
   this.setup();
@@ -26,6 +28,17 @@ GameManager.prototype.keepPlaying = function () {
   this.actuator.continueGame(); // Clear the game won/lost message
 };
 
+// Stop sounds
+GameManager.prototype.initSound = function () {
+  var soundState = this.storageManager.getSoundState();
+  if(soundState==1){
+    this.soundsAmbient.setVolum(0);
+  }else{
+    this.soundsAmbient.setVolum(0.5);
+  }
+  this.actuator.manageBtSounds();
+};
+
 // Return true if the game is lost, or has won and the user hasn't kept playing
 GameManager.prototype.isGameTerminated = function () {
   return this.over || (this.won && !this.keepPlaying);
@@ -33,7 +46,9 @@ GameManager.prototype.isGameTerminated = function () {
 
 // Set up the game
 GameManager.prototype.setup = function () {
+  this.soundsAmbient.playStart();
   var previousState = this.storageManager.getGameState();
+  var soundState = this.storageManager.getSoundState();
 
   // Reload the game from a previous game if present
   if (previousState){
@@ -43,6 +58,17 @@ GameManager.prototype.setup = function () {
     this.over        = previousState.over;
     this.won         = previousState.won;
     this.keepPlaying = previousState.keepPlaying;
+
+    if(this.won === false){
+      if(this.over === false){
+        this.actuator.setDoomGuyPassenger("normal");
+      }else{
+        this.actuator.setDoomGuyPassenger("dead");
+      }
+    }else{
+      this.actuator.setDoomGuy("win");
+    }
+    
   }else{
     this.grid        = new Grid(this.size);
     this.score       = 0;
@@ -53,6 +79,24 @@ GameManager.prototype.setup = function () {
     // Add the initial tiles
     this.addStartTiles();
   }
+
+  /* Set sound */
+  if (soundState){
+    this.soundActivate = soundState;
+  }else{
+    this.storageManager.setSoundState(1);
+    this.soundActivate = 1;
+  }
+
+  if(this.soundActivate == 1){
+    this.soundsAmbient.setVolum(0.5);
+    this.actuator.switchSoundToOn();
+  }else{
+    this.soundsAmbient.setVolum(0);
+    this.actuator.switchSoundToOff();
+  }
+
+  this.soundsAmbient.playstrangesounds();
 
   // Update the actuator
   this.actuate();
@@ -83,6 +127,8 @@ GameManager.prototype.actuate = function () {
 
   // Clear the state when the game is over (game over only, not win)
   if (this.over) {
+    this.actuator.setDoomGuy("dead");
+    this.soundsAmbient.playDeath();
     this.storageManager.clearGameState();
   } else {
     this.storageManager.setGameState(this.serialize());
@@ -131,7 +177,7 @@ GameManager.prototype.move = function (direction) {
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
 
-  if (this.isGameTerminated()) return; // Don't do anything if the game's over
+  if (this.isGameTerminated()) return;
 
   var cell, tile;
 
@@ -151,11 +197,12 @@ GameManager.prototype.move = function (direction) {
       if (tile) {
         var positions = self.findFarthestPosition(cell, vector);
         var next      = self.grid.cellContent(positions.next);
-
         // Only one merger per row traversal?
         if (next && next.value === tile.value && !next.mergedFrom) {
           var merged = new Tile(positions.next, tile.value * 2);
           merged.mergedFrom = [tile, next];
+          self.soundsAmbient.playMerge(next.value);
+          //console.log(this.soundsAmbient.playMerge(1));
 
           self.grid.insertTile(merged);
           self.grid.removeTile(tile);
@@ -170,7 +217,11 @@ GameManager.prototype.move = function (direction) {
           self.score += merged.value;
 
           // The mighty 2048 tile
-          if (merged.value === 2048) self.won = true;
+          if (merged.value === 2048){
+            self.won = true;
+            self.soundsAmbient.playvictory();
+            self.actuator.setDoomGuy("win");
+          }
         } else {
           self.moveTile(tile, positions.farthest);
         }
@@ -186,7 +237,14 @@ GameManager.prototype.move = function (direction) {
     this.addRandomTile();
 
     if (!this.movesAvailable()) {
+      this.actuator.setDoomGuy("dead");
       this.over = true; // Game over!
+    }else{
+        if(this.won === false){
+          this.actuator.setDoomGuyPassenger("wow");
+        }else{
+          this.actuator.setDoomGuy("win");
+        }
     }
 
     this.actuate();
