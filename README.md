@@ -6,7 +6,7 @@ It not changing the gameplay, just add a D00M skinn. [Play it here!](http://korv
 ### Screenshot
 
 <p align="center">
-  <img src="http://pictures.gabrielecirulli.com/2048-20140309-234100.png" alt="Screenshot"/>
+  <img src="http://paul.emik.free.fr/2048/r/i/screenshot.png" alt="Screenshot"/>
 </p>
 
 ## Documentation

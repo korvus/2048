@@ -71,7 +71,7 @@
     </div>
 
     <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same zombies touch, they <strong>merge into new one more stronger!</strong>
     </p>
 
     <p class="game-explanation smaller">
