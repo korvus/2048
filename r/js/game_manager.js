@@ -33,8 +33,10 @@ GameManager.prototype.initSound = function () {
   var soundState = this.storageManager.getSoundState();
   if(soundState==1){
     this.soundsAmbient.setVolum(0);
+    this.storageManager.setSoundState(0);
   }else{
     this.soundsAmbient.setVolum(0.5);
+    this.storageManager.setSoundState(1);
   }
   this.actuator.manageBtSounds();
 };

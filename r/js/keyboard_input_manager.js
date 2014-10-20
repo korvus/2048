@@ -70,7 +70,7 @@ KeyboardInputManager.prototype.listen = function () {
 
   // Respond to button presses
   this.bindButtonPress(".retry-button", this.restart);
-  this.bindButtonPress(".music.off", this.initsound);
+  this.bindButtonPress(".music", this.initsound);
   this.bindButtonPress("#head", this.restart);
   this.bindButtonPress(".keep-playing-button", this.keepPlaying);
 
