@@ -1,7 +1,7 @@
 # 2048
 A clone of notorious [2048](https://github.com/gabrielecirulli/2048/), itself based on [Saming's 2048](http://saming.fr/p/2048/) (also a clone), ...itself inspired from [1024](https://play.google.com/store/apps/details?id=com.veewo.a1024)!
 
-It not changing the gameplay, just add a D00M skinn. [Play it here!](http://korvus.github.io/2048/)
+It not changing the gameplay, just add a D00M skinn. [Play it here!](http://paul.emik.free.fr/2048)
 
 ### Screenshot
 
