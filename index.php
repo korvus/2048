@@ -10,6 +10,7 @@
   <meta charset="utf-8">
   <title>2048</title>
 
+  <meta name="description" content="famous game 2048 setted in D00M opera game!" />
   <link href="r/css/main.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="r/i/favicon.ico">
 
